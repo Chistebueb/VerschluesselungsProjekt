@@ -103,17 +103,17 @@ public class Main extends Application {
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
-        root.setBackground(new Background(new BackgroundFill(Color.web("#1F253F"), CornerRadii.EMPTY, Insets.EMPTY)));
+        root.setBackground(new Background(new BackgroundFill(Color.web("#151A30"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         HBox buttonBox = new HBox(10); // New HBox for buttons
         buttonBox.getChildren().addAll(button, button2);
         root.getChildren().addAll(textField, buttonBox, displayLabel);
 
         //style
-        textField.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #61748D; -fx-prompt-text-fill: #FFFFFF;");
-        button.setStyle("-fx-background-color: #17BEBB; -fx-text-fill: #FFFFFF;");
-        button2.setStyle("-fx-background-color: #17BEBB; -fx-text-fill: #FFFFFF;");
-        displayLabel.setStyle("-fx-text-fill: #FFFFFF;");
+        textField.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #1f253f; -fx-prompt-text-fill: #FFFFFF;");
+        button.setStyle("-fx-background-color: #17BEBB; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
+        button2.setStyle("-fx-background-color: #17BEBB; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
+        displayLabel.setStyle("-fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
 
 
         //scene erstelle
@@ -140,9 +140,9 @@ public class Main extends Application {
         });
     }
 
-
+    //generiere zufällige zeichenkette
     public static String randomString() {
-        byte[] array = new byte[7]; // length is bounded by 7
+        byte[] array = new byte[6];
         new Random().nextBytes(array);
         String generatedString = new String(array, Charset.forName("UTF-8"));
 
