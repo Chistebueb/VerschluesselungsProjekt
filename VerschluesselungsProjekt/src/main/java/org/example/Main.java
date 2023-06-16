@@ -9,8 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+
+import java.io.File;
+
+import java.net.URL;
 
 import java.nio.charset.Charset;
 import java.util.Random;
@@ -26,8 +31,9 @@ public class Main extends Application {
     private static String key;
 
     public static void main(String[] args) {
-        //generate key
+        //generiere key
         key = randomString();
+        
 
         // Starte javafx start
         launch(args);
@@ -109,11 +115,14 @@ public class Main extends Application {
         buttonBox.getChildren().addAll(button, button2);
         root.getChildren().addAll(textField, buttonBox, displayLabel);
 
+
+
         //style
         textField.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #1f253f; -fx-prompt-text-fill: #FFFFFF;");
         button.setStyle("-fx-background-color: #17BEBB; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
         button2.setStyle("-fx-background-color: #17BEBB; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
         displayLabel.setStyle("-fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
+
 
 
         //scene erstelle
@@ -142,7 +151,7 @@ public class Main extends Application {
 
     //generiere zufällige zeichenkette
     public static String randomString() {
-        byte[] array = new byte[6];
+        byte[] array = new byte[10];
         new Random().nextBytes(array);
         String generatedString = new String(array, Charset.forName("UTF-8"));
 
