@@ -11,6 +11,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.example.encryption.Xor;
 
 import java.nio.charset.Charset;
 import java.util.Random;
@@ -80,11 +81,11 @@ public class Main extends Application {
 
             if (stage == stage1) {
                 //Falls de Button ih Stage 1 drückt wird, setze die nachricht in das Label voh Stage 2 ih
-                label2.setText(xor.encrypt(key, inputText));
+                label2.setText(Xor.encrypt(key, inputText));
                 textField1.clear();
             } else if (stage == stage2) {
                 // S'Gliiche, aber anderst rum
-                label1.setText(xor.encrypt(key, inputText));
+                label1.setText(Xor.encrypt(key, inputText));
                 textField2.clear();
             }
         });
@@ -93,11 +94,11 @@ public class Main extends Application {
         button2.setOnAction(e -> {
             if (stage == stage1) {
                 //Falls de Button ih Stage 1 drückt wird, setze die nachricht in das Label voh Stage 2 ih
-                label1.setText(xor.decrypt(key, label1.getText()));
+                label1.setText(Xor.decrypt(key, label1.getText()));
 
             } else if (stage == stage2) {
                 // S'Gliiche, aber anderst rum
-                label2.setText(xor.decrypt(key, label2.getText()));
+                label2.setText(Xor.decrypt(key, label2.getText()));
             }
         });
 
