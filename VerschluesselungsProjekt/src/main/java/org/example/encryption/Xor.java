@@ -1,6 +1,6 @@
-package org.example;
+package org.example.encryption;
 
-public class xor {
+public class Xor {
     public static String encrypt(String key, String input) {
         StringBuilder output = new StringBuilder();
 
