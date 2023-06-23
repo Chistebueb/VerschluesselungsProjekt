@@ -1,30 +1,37 @@
 package org.example.encryption;
 
-public class Caesar {
+public class Caesar implements Encryption{
 
-    public static String encrypt(int key, String input) {
+    public String encrypt(String sKey, String input) {
+
+        char firstChar = sKey.charAt(0);
+        int key = (int) firstChar % 50;
+
         String output = "";
 
-        for (int i= 0; i >= input.length(); i++){
+        for (int i= 0; i < input.length(); i++){
             char currentChar = input.charAt(i);
-            output += (currentChar - key);
+            int index = currentChar - key;
+            output += ((char)index);
         }
+        return output;
+    }
 
-        // unter null?
+    public String decrypt(String sKey, String input) {
+
+        char firstChar = sKey.charAt(0);
+        int key = (int) firstChar % 50;
+
+        String output = "";
+
+        for (int i= 0; i < input.length(); i++){
+            char currentChar = input.charAt(i);
+            int index = (currentChar + key);
+            output += ((char)index);
+        }
 
         return output;
     }
 
-    public static String decrypt(int key, String input) {
-        String output = "";
-
-        for (int i= 0; i >= input.length(); i++){
-            char currentChar = input.charAt(i);
-            output += (currentChar + key);
-        }
-
-        // unter null?
-
-        return output;
-    }
+    public Caesar(){}
 }

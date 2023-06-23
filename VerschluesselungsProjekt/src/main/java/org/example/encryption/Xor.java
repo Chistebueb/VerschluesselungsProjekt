@@ -1,7 +1,7 @@
 package org.example.encryption;
 
-public class Xor {
-    public static String encrypt(String key, String input) {
+public class Xor implements Encryption {
+    public String encrypt(String key, String input) {
         StringBuilder output = new StringBuilder();
 
         for (int i = 0; i < input.length(); i++) {
@@ -11,7 +11,7 @@ public class Xor {
         return output.toString();
     }
 
-    public static String decrypt(String key, String input) {
+    public String decrypt(String key, String input) {
         StringBuilder output = new StringBuilder();
 
         for (int i = 0; i < input.length(); i++) {
@@ -20,4 +20,6 @@ public class Xor {
 
         return output.toString();
     }
+
+    public Xor(){}
 }
