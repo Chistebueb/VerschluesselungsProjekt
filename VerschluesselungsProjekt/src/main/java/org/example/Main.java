@@ -35,6 +35,11 @@ public class Main extends Application {
     private Stage stage2;
     private Label label1;
     private Label label2;
+
+    private static Button decryptButton1;
+    private static Button decryptButton2;
+
+    private static Button decryptButton;
     private static String key;
 
     private ArrayList<Button> buttons = new ArrayList<Button>();
@@ -139,34 +144,43 @@ public class Main extends Application {
         buttons.add(unsignedButton);
         TextField textField = new TextField();
         Button button = new Button("Send");
-        Button button2 = new Button("Decrypt");
+        Button decryptButton = new Button("Decrypt");
+
         Label displayLabel = new Label();
 
         // Verschlüssle und sende d'ihgebeni Nachricht, wenn send button drückt wird
         button.setOnAction(e -> {
             String inputText = textField.getText();
-            System.out.println("Input: " + inputText);
+            if(!inputText.equals("")) {
+                System.out.println("Input: " + inputText);
 
-            if (stage == stage1) {
-                //Falls de Button ih Stage 1 drückt wird, setze die nachricht in das Label voh Stage 2 ih
-                label2.setText(encryptionType.encrypt(key, inputText));
-                textField1.clear();
-            } else if (stage == stage2) {
-                // S'Gliiche, aber anderst rum
-                label1.setText(encryptionType.encrypt(key, inputText));
-                textField2.clear();
+                if (stage == stage1) {
+                    //Falls de Button ih Stage 1 drückt wird, setze die nachricht in das Label voh Stage 2 ih
+                    label2.setText(encryptionType.encrypt(key, inputText));
+                    textField1.clear();
+                    decryptButton2.setDisable(false);
+                } else if (stage == stage2) {
+                    // S'Gliiche, aber anderst rum
+                    label1.setText(encryptionType.encrypt(key, inputText));
+                    textField2.clear();
+                    decryptButton1.setDisable(false);
+                }
             }
         });
 
+        decryptButton.setDisable(true);
+
         // Entschlüssle erhalteni Nachricht, wenn decrypt button drückt wird
-        button2.setOnAction(e -> {
+        decryptButton.setOnAction(e -> {
             if (stage == stage1) {
                 //Falls de Button ih Stage 1 drückt wird, setze die nachricht in das Label voh Stage 2 ih
                 label1.setText(encryptionType.decrypt(key, label1.getText()));
+                decryptButton1.setDisable(true);
 
             } else if (stage == stage2) {
                 // S'Gliiche, aber anderst rum
                 label2.setText(encryptionType.decrypt(key, label2.getText()));
+                decryptButton2.setDisable(true);
             }
         });
 
@@ -183,7 +197,7 @@ public class Main extends Application {
         root.setBackground(new Background(new BackgroundFill(Color.web("#151A30"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         HBox buttonBox = new HBox(5);
-        buttonBox.getChildren().addAll(button, button2);
+        buttonBox.getChildren().addAll(button, decryptButton);
 
         HBox typeButtonBox = new HBox(5);
 
@@ -203,11 +217,11 @@ public class Main extends Application {
         instruction.setStyle(" -fx-text-fill: #FFFFFF;");
         textField.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #1f253f; -fx-prompt-text-fill: #FFFFFF;");
         button.setStyle("-fx-background-color: #17bebb; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
-        button2.setStyle("-fx-background-color: #17bebb; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
+        decryptButton.setStyle("-fx-background-color: #17bebb; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
         displayLabel.setStyle("-fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
 
         button.setPrefWidth(72);
-        button2.setPrefWidth(72);
+        decryptButton.setPrefWidth(72);
 
 
 
@@ -222,6 +236,8 @@ public class Main extends Application {
             encryptionType = new Xor();
             label1.setText("");
             label2.setText("");
+            decryptButton1.setDisable(true);
+            decryptButton2.setDisable(true);
         });
 
         // Wächsle verschlüsselig zu Caesar
@@ -229,6 +245,8 @@ public class Main extends Application {
             encryptionType = new Caesar();
             label1.setText("");
             label2.setText("");
+            decryptButton1.setDisable(true);
+            decryptButton2.setDisable(true);
         });
 
 
@@ -237,6 +255,8 @@ public class Main extends Application {
             encryptionType = new Caesar();
             label1.setText("");
             label2.setText("");
+            decryptButton1.setDisable(true);
+            decryptButton2.setDisable(true);
         });
 
 
@@ -249,6 +269,14 @@ public class Main extends Application {
             stage2 = stage;
             textField2 = textField;
             label2 = displayLabel;
+        }
+
+        //teile de gstylti decrypt button zu de dementsprechende static variable zue
+        if(stage == stage1) {
+            decryptButton1 = decryptButton;
+        }
+        else {
+            decryptButton2 = decryptButton;
         }
 
         //falls eis Fenster gschlosse wird, söds andere au zuegah
