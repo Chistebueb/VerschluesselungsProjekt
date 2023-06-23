@@ -1,5 +1,6 @@
 package org.example;
 
+import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -10,12 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.scene.text.Text;
+
 import org.example.encryption.Caesar;
 import org.example.encryption.Encryption;
 import org.example.encryption.Xor;
@@ -42,6 +40,12 @@ public class Main extends Application {
     private ArrayList<Button> buttons = new ArrayList<Button>();
 
     public Encryption encryptionType = new Xor();
+
+    final static Font ONEDAY = Font.loadFont("file:fonts/Oneday/ONEDAY.ttf", 20);
+    final static Font kulimParkBig = Font.loadFont("file:fonts/KulimPark/KulimPark-Light.ttf", 25);
+    final static Font kulimParkSmall = Font.loadFont("file:fonts/KulimPark/KulimPark-Regular.ttf", 13);
+    final static Font kulimParkBold = Font.loadFont("file:fonts/KulimPark/KulimPark-Bold.ttf", 13);
+
 
     public static void main(String[] args) {
 
@@ -134,7 +138,7 @@ public class Main extends Application {
         Button unsignedButton = new Button(" more ");
         buttons.add(unsignedButton);
         TextField textField = new TextField();
-        Button button = new Button(" Send  ");
+        Button button = new Button("Send");
         Button button2 = new Button("Decrypt");
         Label displayLabel = new Label();
 
@@ -202,8 +206,13 @@ public class Main extends Application {
         button2.setStyle("-fx-background-color: #17bebb; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
         displayLabel.setStyle("-fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
 
-        title.setFont(Font.loadFont("fonts/Oneday/ONEDAY.ttf", 20));
-        instruction.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        button.setPrefWidth(72);
+        button2.setPrefWidth(72);
+
+
+
+        title.setFont(kulimParkBig);
+        instruction.setFont(kulimParkSmall);
 
 
 
