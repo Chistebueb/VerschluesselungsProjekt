@@ -59,7 +59,7 @@ public class SingleWindow extends Application {
 
         // 1. Fenster erstelle
         stage1 = new Stage();
-        stage1.setTitle("Window 1");
+        stage1.setTitle("Encryption");
         createWindow(stage1);
 
         // Im show alli Elemente erstelle voh beide Fenster
