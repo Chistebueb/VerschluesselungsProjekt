@@ -2,6 +2,7 @@ package ch.bbw.verschluesselungm114;
 
 import ch.bbw.verschluesselungm114.encryption.Caesar;
 import ch.bbw.verschluesselungm114.encryption.Encryption;
+import ch.bbw.verschluesselungm114.encryption.PlayFair;
 import ch.bbw.verschluesselungm114.encryption.Xor;
 import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
@@ -26,16 +27,10 @@ import java.util.Random;
 public class SingleWindow extends Application {
 
     private TextField textField1;
-    private TextField textField2;
     private Stage stage1;
-    private Stage stage2;
     private Label label1;
-    private Label label2;
 
     private static Button decryptButton1;
-    private static Button decryptButton2;
-
-    private static Button decryptButton;
     private static String key;
 
     private ArrayList<Button> buttons = new ArrayList<Button>();
@@ -67,17 +62,8 @@ public class SingleWindow extends Application {
         stage1.setTitle("Window 1");
         createWindow(stage1);
 
-        // 2. Fenster erstelle
-        stage2 = new Stage();
-        stage2.setTitle("Window 2");
-        createWindow(stage2);
-
-        // Position liecht versetze, damit die beiden Fenster nöd genau übereinander sind.
-        positionWindows();
-
         // Im show alli Elemente erstelle voh beide Fenster
         stage1.show();
-        stage2.show();
 
         AnimationTimer animator = new AnimationTimer() {
             @Override
@@ -86,29 +72,18 @@ public class SingleWindow extends Application {
                     buttons.get(0).setStyle("-fx-background-color: #00cc99; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
                     buttons.get(1).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
                     buttons.get(2).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
-                    buttons.get(3).setStyle("-fx-background-color: #00cc99; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
-                    buttons.get(4).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
-                    buttons.get(5).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
                 }
                 else if(encryptionType.getClass() == (new Caesar()).getClass()) {
 
                     buttons.get(0).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
                     buttons.get(1).setStyle("-fx-background-color: #00cc99; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
                     buttons.get(2).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
-                    buttons.get(3).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
-                    buttons.get(4).setStyle("-fx-background-color: #00cc99; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
-                    buttons.get(5).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
-
                 }
                 else {
 
                     buttons.get(0).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
                     buttons.get(1).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
                     buttons.get(2).setStyle("-fx-background-color: #00cc99; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
-                    buttons.get(3).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
-                    buttons.get(4).setStyle("-fx-background-color: #1f253f; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;");
-                    buttons.get(5).setStyle("-fx-background-color: #00cc99; -fx-text-fill: #1f253f; -fx-font-weight: bold;");
-
                 }
             }
         };
@@ -116,19 +91,8 @@ public class SingleWindow extends Application {
         animator.start();
     }
 
-    // Fenster versetze
-    private void positionWindows() {
-        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-        double x = stage1.getX() + stage1.getWidth() + 20;
-        double y = screenBounds.getMinY() + (screenBounds.getHeight() - stage1.getHeight()) / 2;
-
-        stage1.setX(screenBounds.getMinX());
-        stage1.setY(y);
-        stage2.setX(x);
-        stage2.setY(y);
-    }
-
     public void createWindow(Stage stage) {
+        System.out.println("hat funzfesukfehjeflwhnfffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         Label title = new Label("Encryption");
         Label instruction = new Label("pick type:");
 
@@ -136,10 +100,10 @@ public class SingleWindow extends Application {
         buttons.add(xorButton);
         Button caesarButton = new Button("Caesar");
         buttons.add(caesarButton);
-        Button unsignedButton = new Button(" more ");
-        buttons.add(unsignedButton);
+        Button playFairButton = new Button("PlayFair");
+        buttons.add(playFairButton);
         TextField textField = new TextField();
-        Button button = new Button("Send");
+        Button button = new Button("Encrypt");
         Button decryptButton = new Button("Decrypt");
 
         Label displayLabel = new Label();
@@ -150,17 +114,9 @@ public class SingleWindow extends Application {
             if(!inputText.equals("")) {
                 System.out.println("Input: " + inputText);
 
-                if (stage == stage1) {
-                    //Falls de Button ih Stage 1 drückt wird, setze die nachricht in das Label voh Stage 2 ih
-                    label2.setText(encryptionType.encrypt(key, inputText));
-                    textField1.clear();
-                    decryptButton2.setDisable(false);
-                } else if (stage == stage2) {
-                    // S'Gliiche, aber anderst rum
-                    label1.setText(encryptionType.encrypt(key, inputText));
-                    textField2.clear();
-                    decryptButton1.setDisable(false);
-                }
+                label1.setText(encryptionType.encrypt(key, inputText));
+                textField1.clear();
+                decryptButton1.setDisable(false);
             }
         });
 
@@ -168,16 +124,8 @@ public class SingleWindow extends Application {
 
         // Entschlüssle erhalteni Nachricht, wenn decrypt button drückt wird
         decryptButton.setOnAction(e -> {
-            if (stage == stage1) {
-                //Falls de Button ih Stage 1 drückt wird, setze die nachricht in das Label voh Stage 2 ih
-                label1.setText(encryptionType.decrypt(key, label1.getText()));
-                decryptButton1.setDisable(true);
-
-            } else if (stage == stage2) {
-                // S'Gliiche, aber anderst rum
-                label2.setText(encryptionType.decrypt(key, label2.getText()));
-                decryptButton2.setDisable(true);
-            }
+            label1.setText(encryptionType.decrypt(key, label1.getText()));
+            decryptButton1.setDisable(true);
         });
 
         VBox root = new VBox(10);
@@ -199,8 +147,8 @@ public class SingleWindow extends Application {
 
         xorButton.setPrefWidth((scene.getWidth()/3)-5);
         caesarButton.setPrefWidth((scene.getWidth()/3)-5);
-        unsignedButton.setPrefWidth((scene.getWidth()/3)-5);
-        typeButtonBox.getChildren().addAll(xorButton, caesarButton, unsignedButton);
+        playFairButton.setPrefWidth((scene.getWidth()/3)-5);
+        typeButtonBox.getChildren().addAll(xorButton, caesarButton, playFairButton);
 
 
 
@@ -231,54 +179,36 @@ public class SingleWindow extends Application {
         xorButton.setOnAction(e -> {
             encryptionType = new Xor();
             label1.setText("");
-            label2.setText("");
             decryptButton1.setDisable(true);
-            decryptButton2.setDisable(true);
         });
 
         // Wächsle verschlüsselig zu Caesar
         caesarButton.setOnAction(e -> {
             encryptionType = new Caesar();
             label1.setText("");
-            label2.setText("");
             decryptButton1.setDisable(true);
-            decryptButton2.setDisable(true);
         });
 
 
         // Wächsle verschlüsselig zu ...
-        caesarButton.setOnAction(e -> {
-            encryptionType = new Caesar();
+        playFairButton.setOnAction(e -> {
+            encryptionType = new PlayFair();
             label1.setText("");
-            label2.setText("");
             decryptButton1.setDisable(true);
-            decryptButton2.setDisable(true);
         });
 
 
         //alles update
-        if (stage == stage1) {
-            stage1 = stage;
-            textField1 = textField;
-            label1 = displayLabel;
-        } else if (stage == stage2) {
-            stage2 = stage;
-            textField2 = textField;
-            label2 = displayLabel;
-        }
+        stage1 = stage;
+        textField1 = textField;
+        label1 = displayLabel;
 
         //teile de gstylti decrypt button zu de dementsprechende static variable zue
-        if(stage == stage1) {
-            decryptButton1 = decryptButton;
-        }
-        else {
-            decryptButton2 = decryptButton;
-        }
+        decryptButton1 = decryptButton;
 
         //falls eis Fenster gschlosse wird, söds andere au zuegah
         stage.setOnCloseRequest(event -> {
             stage1.close();
-            stage2.close();
         });
     }
 
