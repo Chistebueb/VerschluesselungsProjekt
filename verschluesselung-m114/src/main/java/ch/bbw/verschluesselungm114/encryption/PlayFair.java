@@ -74,7 +74,7 @@ public class PlayFair implements Encryption {
 
         // Add a padding 'X' at the end if the length is odd
         if (input.length() % 2 != 0) {
-            input += 'X';
+            input += '+';
         }
 
         int index = 0;
@@ -133,7 +133,7 @@ public class PlayFair implements Encryption {
             }
         }
 
-        if(decryptedText.toString().endsWith("X")) {
+        if(decryptedText.toString().endsWith("+")) {
             StringBuffer output = new StringBuffer(decryptedText.toString());
             output.deleteCharAt(output.length() - 1);
             return output.toString();

@@ -2,6 +2,7 @@ package ch.bbw.verschluesselungm114;
 
 import ch.bbw.verschluesselungm114.encryption.Caesar;
 import ch.bbw.verschluesselungm114.encryption.Encryption;
+import ch.bbw.verschluesselungm114.encryption.PlayFair;
 import ch.bbw.verschluesselungm114.encryption.Xor;
 import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
@@ -136,8 +137,8 @@ public class TwoWindows extends Application {
         buttons.add(xorButton);
         Button caesarButton = new Button("Caesar");
         buttons.add(caesarButton);
-        Button unsignedButton = new Button(" more ");
-        buttons.add(unsignedButton);
+        Button playFairButton = new Button("PlayFair");
+        buttons.add(playFairButton);
         TextField textField = new TextField();
         Button button = new Button("Send");
         Button decryptButton = new Button("Decrypt");
@@ -199,8 +200,8 @@ public class TwoWindows extends Application {
 
         xorButton.setPrefWidth((scene.getWidth()/3)-5);
         caesarButton.setPrefWidth((scene.getWidth()/3)-5);
-        unsignedButton.setPrefWidth((scene.getWidth()/3)-5);
-        typeButtonBox.getChildren().addAll(xorButton, caesarButton, unsignedButton);
+        playFairButton.setPrefWidth((scene.getWidth()/3)-5);
+        typeButtonBox.getChildren().addAll(xorButton, caesarButton, playFairButton);
 
 
 
@@ -247,8 +248,8 @@ public class TwoWindows extends Application {
 
 
         // Wächsle verschlüsselig zu ...
-        caesarButton.setOnAction(e -> {
-            encryptionType = new Caesar();
+        playFairButton.setOnAction(e -> {
+            encryptionType = new PlayFair();
             label1.setText("");
             label2.setText("");
             decryptButton1.setDisable(true);
