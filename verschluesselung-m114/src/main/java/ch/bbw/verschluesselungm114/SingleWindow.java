@@ -204,11 +204,6 @@ public class SingleWindow extends Application {
 
         //teile de gstylti decrypt button zu de dementsprechende static variable zue
         decryptButton1 = decryptButton;
-
-        //falls eis Fenster gschlosse wird, söds andere au zuegah
-        stage.setOnCloseRequest(event -> {
-            stage1.close();
-        });
     }
 
     //generiere zufällige zeichenkette
