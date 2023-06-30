@@ -33,6 +33,8 @@ public class SingleWindow extends Application {
     private static Button decryptButton1;
     private static String key;
 
+    
+
     private ArrayList<Button> buttons = new ArrayList<Button>();
 
     public Encryption encryptionType = new Xor();
