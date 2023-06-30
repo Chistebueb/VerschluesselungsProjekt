@@ -18,17 +18,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 
-
-import java.io.File;
-
-import java.net.URL;
-
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Random;
 
 
-public class Main extends Application {
+public class SingleWindow extends Application {
 
     private TextField textField1;
     private TextField textField2;
@@ -58,7 +53,7 @@ public class Main extends Application {
         //generiere key
         key = randomString();
         System.out.println(key);
-        
+
 
         // Starte javafx start
         launch(args);
