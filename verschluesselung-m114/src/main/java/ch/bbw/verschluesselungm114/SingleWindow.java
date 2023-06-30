@@ -8,14 +8,12 @@ import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 
@@ -27,8 +25,8 @@ import java.util.Random;
 public class SingleWindow extends Application {
 
     private TextField textField1;
-    private Stage stage1;
-    private Label label1;
+    private Stage stage;
+    private Label label;
 
     private static Button decryptButton1;
     private static String key;
@@ -58,12 +56,12 @@ public class SingleWindow extends Application {
     public void start(Stage primaryStage) {
 
         // 1. Fenster erstelle
-        stage1 = new Stage();
-        stage1.setTitle("Encryption");
-        createWindow(stage1);
+        stage = new Stage();
+        stage.setTitle("Encryption");
+        createWindow(stage);
 
         // Im show alli Elemente erstelle voh beide Fenster
-        stage1.show();
+        stage.show();
 
         AnimationTimer animator = new AnimationTimer() {
             @Override
@@ -113,7 +111,7 @@ public class SingleWindow extends Application {
             if(!inputText.equals("")) {
                 System.out.println("Input: " + inputText);
 
-                label1.setText(encryptionType.encrypt(key, inputText));
+                label.setText(encryptionType.encrypt(key, inputText));
                 textField1.clear();
                 decryptButton1.setDisable(false);
             }
@@ -123,7 +121,7 @@ public class SingleWindow extends Application {
 
         // Entschlüssle erhalteni Nachricht, wenn decrypt button drückt wird
         decryptButton.setOnAction(e -> {
-            label1.setText(encryptionType.decrypt(key, label1.getText()));
+            label.setText(encryptionType.decrypt(key, label.getText()));
             decryptButton1.setDisable(true);
         });
 
@@ -177,14 +175,14 @@ public class SingleWindow extends Application {
         // Wächsle verschlüsselig zu Xor
         xorButton.setOnAction(e -> {
             encryptionType = new Xor();
-            label1.setText("");
+            label.setText("");
             decryptButton1.setDisable(true);
         });
 
         // Wächsle verschlüsselig zu Caesar
         caesarButton.setOnAction(e -> {
             encryptionType = new Caesar();
-            label1.setText("");
+            label.setText("");
             decryptButton1.setDisable(true);
         });
 
@@ -192,15 +190,15 @@ public class SingleWindow extends Application {
         // Wächsle verschlüsselig zu ...
         playFairButton.setOnAction(e -> {
             encryptionType = new PlayFair();
-            label1.setText("");
+            label.setText("");
             decryptButton1.setDisable(true);
         });
 
 
         //alles update
-        stage1 = stage;
+        this.stage = stage;
         textField1 = textField;
-        label1 = displayLabel;
+        label = displayLabel;
 
         //teile de gstylti decrypt button zu de dementsprechende static variable zue
         decryptButton1 = decryptButton;
