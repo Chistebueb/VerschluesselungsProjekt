@@ -92,7 +92,6 @@ public class SingleWindow extends Application {
     }
 
     public void createWindow(Stage stage) {
-        System.out.println("hat funzfesukfehjeflwhnfffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         Label title = new Label("Encryption");
         Label instruction = new Label("pick type:");
 
