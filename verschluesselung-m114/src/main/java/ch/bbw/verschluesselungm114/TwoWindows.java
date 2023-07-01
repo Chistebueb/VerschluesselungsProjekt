@@ -4,6 +4,7 @@ import ch.bbw.verschluesselungm114.encryption.Caesar;
 import ch.bbw.verschluesselungm114.encryption.Encryption;
 import ch.bbw.verschluesselungm114.encryption.PlayFair;
 import ch.bbw.verschluesselungm114.encryption.Xor;
+import javafx.scene.image.Image;
 import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -36,10 +37,9 @@ public class TwoWindows extends Application {
     private static Button decryptButton1;
     private static Button decryptButton2;
 
-    private static Button decryptButton;
     private static String key;
 
-    private ArrayList<Button> buttons = new ArrayList<Button>();
+    private final ArrayList<Button> buttons = new ArrayList<Button>();
 
     public Encryption encryptionType = new Xor();
 
@@ -75,6 +75,9 @@ public class TwoWindows extends Application {
 
         // Position liecht versetze, damit die beiden Fenster nöd genau übereinander sind.
         positionWindows();
+
+        stage1.getIcons().add(new Image("file:img/Icon.png"));
+        stage2.getIcons().add(new Image("file:img/Icon.png"));
 
         // Im show alli Elemente erstelle voh beide Fenster
         stage1.show();
@@ -131,7 +134,8 @@ public class TwoWindows extends Application {
 
     public void createWindow(Stage stage) {
         Label title = new Label("Encryption");
-        Label instruction = new Label("pick type:");
+        Label instruction = new Label("Pick type:");
+        instruction.setPadding(new Insets(24, 0, 0, 0));
 
         Button xorButton = new Button(" Xor  ");
         buttons.add(xorButton);
@@ -184,7 +188,7 @@ public class TwoWindows extends Application {
         VBox root = new VBox(10);
 
         //scene erstelle
-        Scene scene = new Scene(root, 500, 220);
+        Scene scene = new Scene(root, 500, 250);
         scene.setFill(Color.web("#151A30"));
 
         stage.setScene(scene);

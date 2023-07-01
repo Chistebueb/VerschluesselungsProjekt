@@ -4,6 +4,7 @@ import ch.bbw.verschluesselungm114.encryption.Caesar;
 import ch.bbw.verschluesselungm114.encryption.Encryption;
 import ch.bbw.verschluesselungm114.encryption.PlayFair;
 import ch.bbw.verschluesselungm114.encryption.Xor;
+import javafx.scene.image.Image;
 import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -31,7 +32,6 @@ public class SingleWindow extends Application {
     private static Button decryptButton1;
     private static String key;
 
-    
 
     private ArrayList<Button> buttons = new ArrayList<Button>();
 
@@ -57,10 +57,13 @@ public class SingleWindow extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+
         // 1. Fenster erstelle
         stage = new Stage();
         stage.setTitle("Encryption");
         createWindow(stage);
+
+        stage.getIcons().add(new Image("file:img/Icon.png"));
 
         // Im show alli Elemente erstelle voh beide Fenster
         stage.show();
@@ -93,7 +96,8 @@ public class SingleWindow extends Application {
 
     public void createWindow(Stage stage) {
         Label title = new Label("Encryption");
-        Label instruction = new Label("pick type:");
+        Label instruction = new Label("Pick type:");
+        instruction.setPadding(new Insets(24, 0, 0, 0));
 
         Button xorButton = new Button(" Xor  ");
         buttons.add(xorButton);
@@ -130,7 +134,7 @@ public class SingleWindow extends Application {
         VBox root = new VBox(10);
 
         //scene erstelle
-        Scene scene = new Scene(root, 500, 220);
+        Scene scene = new Scene(root, 500, 250);
         scene.setFill(Color.web("#151A30"));
 
         stage.setScene(scene);

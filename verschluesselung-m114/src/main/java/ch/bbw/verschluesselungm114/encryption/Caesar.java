@@ -5,7 +5,7 @@ public class Caesar implements Encryption{
     public String encrypt(String sKey, String input) {
 
         char firstChar = sKey.charAt(0);
-        int key = (int) firstChar;
+        int key = firstChar;
 
         String output = "";
 
