@@ -2,9 +2,6 @@
   <artifact type="jar" name="verschluesselung-m114:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/verschluesselung_m114_jar</output-path>
     <root id="archive" name="verschluesselung-m114.jar">
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
-      </element>
       <element id="module-output" name="verschluesselung-m114" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/20/javafx-fxml-20-win.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/20/javafx-base-20-win.jar" path-in-jar="/" />
