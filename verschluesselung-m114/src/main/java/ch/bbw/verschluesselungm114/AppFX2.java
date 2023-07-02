@@ -43,10 +43,10 @@ public class AppFX2 extends Application {
 
     public Encryption encryptionType = new Xor();
 
-    final static Font ONEDAY = Font.loadFont("file:fonts/Oneday/ONEDAY.ttf", 20);
+
     final static Font kulimParkBig = Font.loadFont("file:fonts/KulimPark/KulimPark-Light.ttf", 25);
     final static Font kulimParkSmall = Font.loadFont("file:fonts/KulimPark/KulimPark-Regular.ttf", 13);
-    final static Font kulimParkBold = Font.loadFont("file:fonts/KulimPark/KulimPark-Bold.ttf", 13);
+
 
 
     @Override

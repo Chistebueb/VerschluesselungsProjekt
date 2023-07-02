@@ -4,8 +4,8 @@ import java.nio.charset.Charset;
 import java.util.Random;
 
 public class PlayFair implements Encryption {
-    private final int SIZE = 5; // Size of the Playfair matrix
-    private char[][] matrix; // Playfair matrix
+    private final int SIZE = 5;
+    private char[][] matrix;
 
     public PlayFair() {
         matrix = new char[SIZE][SIZE];
@@ -13,9 +13,9 @@ public class PlayFair implements Encryption {
 
     private void generateMatrix(String key) {
         key = key.replaceAll("[^a-zA-Z]", "").toUpperCase(); // Remove non-alphabetic characters and convert to uppercase
-        key = key.replace("J", "I"); // Replace 'J' with 'I'
+        key = key.replace("J", "I"); // Ersetze 'J' mit 'I'
 
-        // Fill the matrix with the key
+        // fülle matrix mitem key
         int rowIndex = 0;
         int colIndex = 0;
         boolean[] usedChars = new boolean[26];
@@ -34,7 +34,7 @@ public class PlayFair implements Encryption {
             }
         }
 
-        // Fill the remaining matrix with other alphabetic characters
+        // Fülle die restliche Matrix mit anderen alphabethischen Zeichen
         char ch = 'A';
         while (rowIndex < SIZE) {
             if (ch != 'J' && !usedChars[ch - 'A']) {
@@ -69,8 +69,8 @@ public class PlayFair implements Encryption {
         generateMatrix(key);
 
         StringBuilder encryptedText = new StringBuilder();
-        input = input.replaceAll("[^a-zA-Z]", "").toUpperCase(); // Remove non-alphabetic characters and convert to uppercase
-        input = input.replace("J", "I"); // Replace 'J' with 'I'
+        input = input.replaceAll("[^a-zA-Z]", "").toUpperCase();
+        input = input.replace("J", "I"); // ersetze 'J' with 'I'
 
         // Add a padding 'X' at the end if the length is odd
         if (input.length() % 2 != 0) {
@@ -108,7 +108,7 @@ public class PlayFair implements Encryption {
         generateMatrix(key);
 
         StringBuilder decryptedText = new StringBuilder();
-        encryptedInput = encryptedInput.replaceAll("[^a-zA-Z]", "").toUpperCase(); // Remove non-alphabetic characters and convert to uppercase
+        encryptedInput = encryptedInput.replaceAll("[^a-zA-Z]", "").toUpperCase();
 
         int index = 0;
         while (index < encryptedInput.length()) {
